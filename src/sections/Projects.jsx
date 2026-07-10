@@ -1,10 +1,31 @@
 import Reveal from '../Reveal.jsx'
 
-// Placeholder projects — swap in real ones once you decide what to feature.
 const PROJECTS = [
-  { title: 'Project One', description: 'Short description of project one goes here.' },
-  { title: 'Project Two', description: 'Short description of project two goes here.' },
-  { title: 'Project Three', description: 'Short description of project three goes here.' },
+  {
+    title: 'Configuration Control System',
+    description:
+      'Designed and built an internal system to track product revisions across manufacturing, centralizing data from several web apps and databases into one API-driven service with consistent behavior guarantees.',
+  },
+  {
+    title: 'Help Desk',
+    description:
+      'An ASP.NET Core MVC ticketing system with chat-style updates, multimedia attachments, and an SMTP notification engine — improved transparency and sped up issue resolution across the DevOps org.',
+  },
+  {
+    title: 'WIP Map',
+    description:
+      'An ASP.NET Core Blazor app with a drag-and-drop canvas visualizing gross profit by building in real time as jobs are scanned, adapting to evolving factory layouts without code changes.',
+  },
+  {
+    title: 'Wire Operations',
+    description:
+      'An ASP.NET Core MVC app streamlining wire-harness manufacturing — aggregates data across tables, generates laser-marking commands, and pushes live status via multithreading and SignalR.',
+  },
+  {
+    title: 'War Driving Drone',
+    description:
+      'Built with Elbit Systems of America: an autonomous drone-based Wi-Fi recon platform. Integrated Kismet for access-point scanning and streamed telemetry over MQTT into a Tauri/Vue 3 app rendering results on a live map.',
+  },
 ]
 
 export default function Projects() {

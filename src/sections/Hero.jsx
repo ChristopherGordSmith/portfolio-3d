@@ -29,8 +29,8 @@ export default function Hero() {
         </Canvas>
 
         <div className="hero-copy">
-          <h1>Your Name</h1>
-          <p>Software Engineer &amp; Architect</p>
+          <h1>Christopher Smith</h1>
+          <p>Software Developer &amp; Architect</p>
         </div>
       </div>
     </section>
