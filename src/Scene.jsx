@@ -25,7 +25,11 @@ export default function Scene() {
   useLayoutEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: document.body,
+        // '#hero' is the tall wrapper in Hero.jsx — scoping the trigger to
+        // it (instead of the whole document) means this choreography plays
+        // out over the hero's own scroll range, then holds once you've
+        // scrolled past it into About/Projects/Contact.
+        trigger: '#hero',
         start: 'top top',
         end: 'bottom bottom',
         // scrub ties the timeline's playhead directly to scroll position
