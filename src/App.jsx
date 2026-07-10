@@ -19,7 +19,7 @@ export default function App() {
       />
 
       <Suspense fallback={null}>
-        <Duck scale={0.01} position={[0, -0.5, 0]} />
+        <Duck position={[0, -1.1, 0]} />
         <ContactShadows position={[0, -1, 0]} opacity={0.4} blur={2.5} />
         {/* Quick studio-style environment lighting/reflections */}
         <Environment preset="city" />
