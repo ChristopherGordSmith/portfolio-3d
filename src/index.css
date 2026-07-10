@@ -10,9 +10,13 @@ html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
   background: #0e0e12;
-  overflow: hidden;
+}
+
+/* Vertical scroll is what drives the ScrollTrigger choreography in
+   Scene.jsx — only horizontal overflow is unwanted here. */
+html {
+  overflow-x: hidden;
 }
 
 canvas {

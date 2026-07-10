@@ -16,26 +16,36 @@ engineering competence (5-year dev / software architect background).
 - 3D assets in `.glb` format
 
 ## Current status
-Phase 1 complete: bare R3F scene with camera, lighting, orbit controls, and
-one `.glb` model (Khronos "Duck" placeholder) loaded and continuously
-spinning via `useFrame` in `src/Duck.jsx`.
+Phase 3 complete: `src/Scene.jsx` choreographs four objects (Duck +
+placeholder Box/Sphere/TorusKnot primitives) with one GSAP timeline driven
+by ScrollTrigger. The Canvas is pinned (`position: fixed`) over a tall
+scroll-spacer in `App.jsx` so page scroll drives the timeline's scrub
+instead of moving the canvas itself. Duck's own load-in/hover tweens
+(Phase 2) still run independently on its inner "animated" group; Scene.jsx
+animates the outer group (exposed via `forwardRef`) for choreography, so
+the two animation layers never fight over the same transform.
 
 ## Roadmap
 - [x] Phase 1 — Load & display: bare scene, one model rendering and spinning
-- [ ] Phase 2 — Basic animation: introduce GSAP, animate rotation/position/
-      scale, trigger on load/hover/click (replace the constant `useFrame`
-      spin with GSAP-driven tweens)
-- [ ] Phase 3 — Choreography: multiple objects, GSAP timelines, scroll-
-      triggered animation (ScrollTrigger)
+- [x] Phase 2 — Basic animation: GSAP-driven load-in (pop + fade) and hover
+      scale on `src/Duck.jsx`, replacing the constant `useFrame` spin
+- [x] Phase 3 — Choreography: `src/Scene.jsx` renders Duck + Box/Sphere/
+      TorusKnot placeholders, choreographed by one GSAP timeline scrubbed
+      via ScrollTrigger against page scroll
 - [ ] Phase 4 — Portfolio page: section-based scroll reveals, hero 3D piece,
       transitions, responsive canvas, loading states, performance pass
+      (replace the plain scroll-spacer div with real page content/sections)
 
 ## Project structure
 ```
 src/
-  main.jsx     # React entry point
-  App.jsx      # Canvas, lighting, environment, orbit controls
-  Duck.jsx     # Loads the .glb and animates it
+  main.jsx      # React entry point
+  App.jsx       # Fixed Canvas + scroll spacer, lighting, environment, orbit controls
+  Scene.jsx     # Choreographs all objects with one GSAP/ScrollTrigger timeline
+  Duck.jsx      # Loads the .glb; own load-in/hover GSAP tweens; forwardRef for Scene.jsx
+  Box.jsx       # Placeholder primitive object (swap for a sourced model later)
+  Sphere.jsx    # Placeholder primitive object
+  TorusKnot.jsx # Placeholder primitive object
 public/
   models/
     Duck.glb   # Placeholder model — swappable
