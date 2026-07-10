@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useEffect } from 'react'
+import { forwardRef, useRef, useLayoutEffect, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap'
 
@@ -7,9 +7,10 @@ import gsap from 'gsap'
 const MODEL_PATH = '/models/Duck.glb'
 const HOVER_SCALE = 1.15
 
-export default function Duck(props) {
-  // `layout` receives props from the parent (position/scale) — React owns this.
-  const layout = useRef()
+// forwardRef exposes the outer "layout" group to the parent (Scene.jsx uses
+// it to choreograph position/rotation on scroll) while the inner "animated"
+// group stays private to this component's own load-in/hover tweens.
+const Duck = forwardRef(function Duck(props, ref) {
   // `animated` is only ever touched by GSAP, imperatively — React never sets
   // its transform, so there's no fight between React re-renders and tweens.
   const animated = useRef()
@@ -84,13 +85,15 @@ export default function Duck(props) {
   }
 
   return (
-    <group ref={layout} {...props}>
+    <group ref={ref} {...props}>
       <group ref={animated} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
         <primitive object={scene} />
       </group>
     </group>
   )
-}
+})
+
+export default Duck
 
 // Preload so the model starts fetching as soon as the module is imported,
 // rather than waiting for first render.
